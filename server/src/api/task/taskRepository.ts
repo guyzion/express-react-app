@@ -103,6 +103,7 @@ export class TaskRepository {
 
   async updateAsync(task: UpdateTaskDto): Promise<Task> {
     const index = tasks.findIndex((t) => t.id === task.id);
+    console.log(task.id);
     tasks[index] = { ...tasks[index], ...task, updatedAt: new Date() };
     return tasks[index];
   }

@@ -18,8 +18,11 @@ export function TaskForm({ task, onUpdate }: Props) {
         const newTask = await taskService.createTask(data);
         onUpdate?.(newTask);
       } else {
-        const updatedTask = await taskService.updateTask(data);
-        onUpdate?.({ ...updatedTask, id: task.id });
+        const updatedTask = await taskService.updateTask({
+          ...data,
+          id: task.id,
+        });
+        onUpdate?.(updatedTask);
       }
     } catch (error) {
       console.error(error);
